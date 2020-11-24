@@ -127,14 +127,14 @@ a:hover, a:focus {
 
 #apps, #links {
   padding: var(--padding);
-  margin: 1em 0em;
+  margin: 2em 0em;
   background-color: rgba(19, 19, 19, 0.3);
   border-radius: var(--rounded);
   font-size: 0.9rem;
 }
 
 #links {
-  height: 190px;
+  height: 250px;
   overflow-y: scroll;
 }
 
