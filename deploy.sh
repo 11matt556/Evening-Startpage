@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Clearing /var/www/html/"
-rm -rf /var/www/html/
-echo "Copying to /var/www/html"
-rsync --recursive --info=progress2 * /var/www/html/
+echo "Clearing /root/nginx-proxy/html/hub"
+rm -rf /root/nginx-proxy/html/hub
+echo "Copying to /root/nginx-proxy/html/hub"
+rsync --recursive --info=progress2 * /root/nginx-proxy/html/hub
