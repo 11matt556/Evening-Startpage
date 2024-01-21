@@ -1,0 +1,173 @@
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        #root /usr/share/nginx/html/default;
+
+        # Add index.php to the list if you are using PHP
+        #index index.html index.htm index.nginx-debian.html;
+
+        server_name docker.lan;
+
+        location / {
+          proxy_pass http://docker.lan:9000;
+        }
+
+#location ~ ^/tv(?<myslash>/|$)(?<mypath>.*)$
+#{
+    #resolver 10.0.0.1;
+    #set $myargs $args;  # workaround allowing spaces
+    #return 303 http://docker.lan:2001$myslash$mypath$is_args$myargs;
+	#proxy_pass http://docker.lan:2001$myslash$mypath$is_args$myargs;
+	#proxy_pass http://docker.lan:2001/;
+#}
+}	
+
+server {
+
+	listen 80;
+	server_name fakeflix.lan;
+	
+	location /emby {
+		proxy_pass http://docker.lan:2000;
+	}
+	
+	location /tv {
+		proxy_pass http://docker.lan:2001;
+	}
+	
+	location /movies {
+		proxy_pass http://docker.lan:2002;
+	}	
+	
+	location /jackett {
+		proxy_pass http://docker.lan:2003;
+	}	
+	
+	location /transmission {
+		proxy_pass http://docker.lan:9091;
+	}
+	
+
+}
+
+server {
+    listen 80;
+    server_name hub.lan;
+    root /usr/share/nginx/html/hub;
+	index index.html;
+	
+	location / {
+	
+	}
+}
+
+server {
+    listen 7000;
+    server_name hub.lan;
+    root /usr/share/nginx/html/hub;
+	index index.html;
+	
+	location / {
+	
+	}
+}
+
+#server {
+#    listen 80;
+#    server_name pysync.howell-info.us;
+
+#    location / {
+#        proxy_pass http://python-dev.lan:5000;
+#    }   
+#}
+
+server {
+    listen 80;
+    server_name docker.omv-nas.lan;
+
+    location / {
+        proxy_pass http://omv-nas.lan:9000;
+    }   
+}
+
+server {
+    listen 80;
+    server_name emby.fakeflix.lan;
+
+    location / {
+        proxy_pass http://fakeflix.lan:2000;
+    }   
+}
+
+server {
+    listen 80;
+    server_name tv.fakeflix.lan;
+
+    location / {
+        proxy_pass http://fakeflix.lan:2001;
+    }   
+}
+
+server {
+    listen 80;
+    server_name movies.fakeflix.lan;
+
+    location / {
+        proxy_pass http://fakeflix.lan:2002;
+    }   
+}
+
+server {
+    listen 80;
+    server_name jackett.fakeflix.lan;
+
+    location / {
+        proxy_pass http://fakeflix.lan:2003;
+    }   
+}
+
+server {
+    listen 80;
+    server_name torrent.fakeflix.lan;
+
+    location / {
+        proxy_pass http://docker.lan:9091;
+    }   
+}
+
+server {
+    listen 80;
+    server_name pics.lan;
+
+    location / {
+        proxy_pass http://docker.lan:2091;
+    }   
+}
+
+#server {
+#    listen 80;
+#    server_name spotify.lan;
+#
+#    location / {
+#        proxy_pass http://docker.lan:2100;
+#    }   
+#}
+
+#server {
+#    listen 2101;
+#    server_name spotify.howell-info.us;
+#
+#    location / {
+#        proxy_pass http://docker.lan:2101;
+#    } 
+#}
+
+#server {
+#	listen 80;
+#	server_name omada.lan;
+#	
+#	location / {
+#		proxy_pass http://10.0.0.246:8088;
+#	}
+#}

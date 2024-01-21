@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Clearing /root/nginx-server/html/hub"
-rm -rf /root/nginx-server/html/hub
-echo "Copying to /root/nginx-server/html/hub"
-rsync --recursive --info=progress2 * /root/nginx-server/html/hub
+echo "Clearing ./nginx/html/hub"
+rm -rf ./nginx/html/hub
+echo "Copying to ./nginx/html/hub"
+rsync --recursive --info=progress2 * ./nginx/html/hub
