@@ -102,6 +102,17 @@ server {
 
 server {
     listen 80;
+    server_name watch.fakeflix.lan;
+
+    location / {
+        proxy_pass http://fakeflix.lan:2000;
+    }
+}
+
+
+
+server {
+    listen 80;
     server_name tv.fakeflix.lan;
 
     location / {
