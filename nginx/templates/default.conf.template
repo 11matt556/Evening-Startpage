@@ -7,7 +7,7 @@ server {
         # Add index.php to the list if you are using PHP
         #index index.html index.htm index.nginx-debian.html;
 
-        server_name docker.lan;
+        server_name docker.lan docker;
 
         location / {
           proxy_pass http://docker.lan:9000;
@@ -53,7 +53,7 @@ server {
 
 server {
     listen 80;
-    server_name hub.lan;
+    server_name hub.lan hub;
     root /usr/share/nginx/html/hub;
 	index index.html;
 	
@@ -64,7 +64,7 @@ server {
 
 server {
     listen 7000;
-    server_name hub.lan;
+    server_name hub.lan hub;
     root /usr/share/nginx/html/hub;
 	index index.html;
 	
@@ -149,7 +149,7 @@ server {
 
 server {
     listen 80;
-    server_name pics.lan;
+    server_name pics.lan pics;
 
     location / {
         proxy_pass http://docker.lan:2091;
